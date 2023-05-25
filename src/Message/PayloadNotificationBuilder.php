@@ -11,6 +11,7 @@ namespace LaravelFCM\Message;
  */
 class PayloadNotificationBuilder
 {
+    protected $image;
     /**
      * @internal
      *
@@ -123,6 +124,21 @@ class PayloadNotificationBuilder
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
+    }
+    /**
+     * Indicates notification image. This field is not visible on iOS phones and tablets.
+     * but it is required for android.
+     *
+     * @param string $image
+     *
+     * @return PayloadNotificationBuilder current instance of the builder
+     */
+    public function setImage($image)
+    {
+
+        $this->image = $image;
 
         return $this;
     }
@@ -344,7 +360,15 @@ class PayloadNotificationBuilder
     {
         return $this->icon;
     }
-
+    /**
+     * Get Image.
+     *
+     * @return null|string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
     /**
      * Get Sound.
      *
